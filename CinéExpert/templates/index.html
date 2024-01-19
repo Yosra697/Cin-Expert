@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Recommendation</h1>
+        <form method="post">
+            <label for="genre">Choose a genre</label>
+            <select name="genre" id="genre">
+                <option value="" selected disabled>-- Genre --</option>
+                {% for g in genres %}
+                    <option value="{{ g }}" {% if g == selected_genre %}selected{% endif %}>{{ g }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="sentiment">Choose a sentiment</label>
+            <select name="sentiment" id="sentiment">
+                <option value="" selected disabled>-- Sentiment --</option>
+                {% for s in sentiments %}
+                    <option value="{{ s }}" {% if s == selected_sentiment %}selected{% endif %}>{{ s }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="realisateur">Choose a director</label>
+            <select name="realisateur" id="realisateur">
+                <option value="" selected disabled>-- Director --</option>
+                {% for r in realisateurs %}
+                    <option value="{{ r }}" {% if r == selected_realisateur %}selected{% endif %}>{{ r }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="acteur">Choose an actor</label>
+            <select name="acteur" id="acteur">
+                <option value="" selected disabled>-- Actor --</option>
+                {% for a in acteurs %}
+                    <option value="{{ a }}" {% if a == selected_acteur %}selected{% endif %}>{{ a }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="duree">Choose a duration</label>
+            <select name="duree" id="duree">
+                <option value="" selected disabled>-- Duration --</option>
+                {% for d in durees %}
+                    <option value="{{ d }}" {% if d == selected_duree %}selected{% endif %}>{{ d }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if result %}
+            <p class="result">Result: {{ result }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
